@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>100 Days With You 💖</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #1e1e2f;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+    }
+
+    .timer {
+      position: absolute;
+      top: 30px;
+      width: 100%;
+      text-align: center;
+      font-size: 2em;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 12px 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      z-index: 10;
+      backdrop-filter: blur(6px);
+    }
+
+    .title {
+      position: absolute;
+      top: 90px;
+      width: 100%;
+      text-align: center;
+      font-size: 3em;
+      font-weight: 600;
+      color: #ffb6c1;
+      text-shadow: 2px 2px 12px rgba(255, 255, 255, 0.2);
+      z-index: 10;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .slideshow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    .slideshow.show {
+      opacity: 1;
+    }
+
+    audio {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="timer" id="timer"></div>
+  <h1 class="title">100 Days With You 💖</h1>
+
+  <img class="slideshow show" id="slideshow" src="image1.jpg" alt="Us">
+
+  <audio controls autoplay loop>
+    <source src="HOW_TO_LOVE_커버.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    // Timer from Jan 12, 2025, 12:53 PM
+    const startDate = new Date("2025-01-12T12:53:00");
+    const timerEl = document.getElementById("timer");
+
+    function updateTimer() {
+      const now = new Date();
+      const diff = now - startDate;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      timerEl.textContent = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // Slideshow images
+    const images = [
+      "image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg", "image5.jpg",
+      "image6.jpg", "image7.jpg", "image8.jpg", "image9.jpg", "image10.jpg"
+    ];
+
+    let index = 0;
+    const slideshow = document.getElementById("slideshow");
+
+    setInterval(() => {
+      slideshow.classList.remove("show");
+      setTimeout(() => {
+        index = (index + 1) % images.length;
+        slideshow.src = images[index];
+        slideshow.classList.add("show");
+      }, 500);
+    }, 4000);
+  </script>
+</body>
+</html>

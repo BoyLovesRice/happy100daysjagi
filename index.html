@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>100 Days With You 💖</title>
+  <title>우리 만난 지 100일 💖</title>
   <style>
     body {
       margin: 0;
@@ -88,38 +88,38 @@
   <div class="stars"></div>
 
   <div class="timer" id="timer"></div>
-  <div class="title" id="title">100 Days With You 💖 Countdown</div>
+  <div class="title" id="title">우리 만난 지 100일 💖 카운트다운</div>
 
   <div class="image-box">
-    <img id="slideshow" src="image1.jpg" alt="Us">
+    <img id="slideshow" src="image1.jpg" alt="우리 사진">
   </div>
 
   <audio controls autoplay loop>
     <source src="HOW_TO_LOVE_커버.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
+    이 브라우저는 오디오 요소를 지원하지 않습니다.
   </audio>
 
   <script>
-    const estStart = new Date("2025-01-12T00:00:00"); // 12AM EST = 5AM UTC
+    const estStart = new Date("2025-01-12T00:00:00");
     const titleEl = document.getElementById("title");
     const timerEl = document.getElementById("timer");
 
     function updateTimer() {
       const now = new Date();
-      const nowEST = new Date(); // Manually shift to EST
+      const nowEST = new Date();
       const diff = nowEST - estStart;
 
-      const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
 
-      timerEl.textContent = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+      timerEl.textContent = `${days}일 ${hours}시간 ${minutes}분 ${seconds}초`;
 
       if (days >= 100) {
-        titleEl.textContent = "🎉 Happy 100 Days With You 💖";
+        titleEl.textContent = "🎉 벌써 100일이야~ 사랑해 💖";
       } else {
-        titleEl.textContent = "100 Days With You 💖 Countdown";
+        titleEl.textContent = "우리 만난 지 100일 💖 카운트다운";
       }
     }
 

@@ -12,8 +12,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      padding-top: 50px;
+      justify-content: center;
+      height: 100vh;
     }
 
     .timer {
@@ -32,21 +32,19 @@
       margin-bottom: 20px;
     }
 
-    .image-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      max-width: 90vw;
+    .image-box {
+      width: 320px;
+      height: 320px;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
       margin-bottom: 30px;
     }
 
-    .image-container img {
-      width: 300px;
-      height: 300px;
+    .image-box img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     }
 
     audio {
@@ -56,19 +54,10 @@
 </head>
 <body>
   <div class="timer" id="timer"></div>
-  <div class="title">100 Days With You 💖</div>
+  <div class="title" id="title">100 Days With You 💖 Countdown</div>
 
-  <div class="image-container">
-    <img src="image1.jpg" alt="img1">
-    <img src="image2.jpg" alt="img2">
-    <img src="image3.jpg" alt="img3">
-    <img src="image4.jpg" alt="img4">
-    <img src="image5.jpg" alt="img5">
-    <img src="image6.jpg" alt="img6">
-    <img src="image7.jpg" alt="img7">
-    <img src="image8.jpg" alt="img8">
-    <img src="image9.jpg" alt="img9">
-    <img src="image10.jpg" alt="img10">
+  <div class="image-box">
+    <img id="slideshow" src="image1.jpg" alt="Us">
   </div>
 
   <audio controls autoplay loop>
@@ -77,9 +66,10 @@
   </audio>
 
   <script>
-    // Timer from Jan 12, 2025
     const startDate = new Date("2025-01-12T00:00:00");
+    const hundredDay = new Date("2025-04-21T00:00:00");
     const timerEl = document.getElementById("timer");
+    const titleEl = document.getElementById("title");
 
     function updateTimer() {
       const now = new Date();
@@ -91,10 +81,30 @@
       const seconds = Math.floor((diff / 1000) % 60);
 
       timerEl.textContent = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+
+      if (days >= 100) {
+        titleEl.textContent = '🎉 Happy 100 Days With You 💖';
+      } else {
+        titleEl.textContent = '100 Days With You 💖 Countdown';
+      }
     }
 
     setInterval(updateTimer, 1000);
     updateTimer();
+
+    // Slideshow
+    const images = [
+      "image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg", "image5.jpg",
+      "image6.jpg", "image7.jpg", "image8.jpg", "image9.jpg", "image10.jpg"
+    ];
+
+    let index = 0;
+    const slideshow = document.getElementById("slideshow");
+
+    setInterval(() => {
+      index = (index + 1) % images.length;
+      slideshow.src = images[index];
+    }, 3000);
   </script>
 </body>
 </html>

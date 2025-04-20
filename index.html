@@ -6,7 +6,7 @@
   <style>
     body {
       margin: 0;
-      background-color: #1e1e2f;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
       color: #fff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
@@ -14,6 +14,25 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
+      overflow: hidden;
+    }
+
+    .stars {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      background: transparent url('https://media.giphy.com/media/l41lHdgDabg9PTItK/giphy.gif') repeat top center;
+      background-size: cover;
+      opacity: 0.3;
+      animation: twinkle 100s linear infinite;
+    }
+
+    @keyframes twinkle {
+      from { background-position: 0 0; }
+      to { background-position: -10000px 5000px; }
     }
 
     .timer {
@@ -22,6 +41,7 @@
       padding: 10px 20px;
       border-radius: 10px;
       margin-bottom: 10px;
+      z-index: 1;
     }
 
     .title {
@@ -30,6 +50,7 @@
       color: #ffb6c1;
       text-shadow: 2px 2px 12px rgba(255, 255, 255, 0.2);
       margin-bottom: 20px;
+      z-index: 1;
     }
 
     .image-box {
@@ -39,6 +60,7 @@
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
       margin-bottom: 30px;
+      z-index: 1;
     }
 
     .image-box img {
@@ -49,10 +71,13 @@
 
     audio {
       margin-bottom: 40px;
+      z-index: 1;
     }
   </style>
 </head>
 <body>
+  <div class="stars"></div>
+
   <div class="timer" id="timer"></div>
   <div class="title" id="title">100 Days With You 💖 Countdown</div>
 
@@ -66,8 +91,8 @@
   </audio>
 
   <script>
-    const startDate = new Date("2025-01-12T00:00:00");
-    const hundredDay = new Date("2025-04-21T00:00:00");
+    const startDate = new Date("2025-01-12T05:00:00Z");
+    const hundredDay = new Date("2025-04-21T04:00:00Z");
     const timerEl = document.getElementById("timer");
     const titleEl = document.getElementById("title");
 

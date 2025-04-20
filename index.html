@@ -9,73 +9,67 @@
       background-color: #1e1e2f;
       color: #fff;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 50px;
     }
 
     .timer {
-      position: absolute;
-      top: 30px;
-      width: 100%;
-      text-align: center;
-      font-size: 2em;
+      font-size: 1.5em;
       background-color: rgba(0, 0, 0, 0.4);
-      padding: 12px 24px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      z-index: 10;
-      backdrop-filter: blur(6px);
+      padding: 10px 20px;
+      border-radius: 10px;
+      margin-bottom: 10px;
     }
 
     .title {
-      position: absolute;
-      top: 90px;
-      width: 100%;
-      text-align: center;
-      font-size: 3em;
+      font-size: 2.5em;
       font-weight: 600;
       color: #ffb6c1;
       text-shadow: 2px 2px 12px rgba(255, 255, 255, 0.2);
-      z-index: 10;
-      animation: fadeIn 2s ease-in-out;
+      margin-bottom: 20px;
     }
 
-    .slideshow {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
+    .image-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      max-width: 90vw;
+      margin-bottom: 30px;
+    }
+
+    .image-container img {
+      width: 300px;
+      height: 300px;
       object-fit: cover;
-      z-index: 1;
-      opacity: 0;
-      transition: opacity 1.5s ease-in-out;
-    }
-
-    .slideshow.show {
-      opacity: 1;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     }
 
     audio {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-      border-radius: 10px;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      margin-bottom: 40px;
     }
   </style>
 </head>
 <body>
   <div class="timer" id="timer"></div>
-  <h1 class="title">100 Days With You 💖</h1>
+  <div class="title">100 Days With You 💖</div>
 
-  <img class="slideshow show" id="slideshow" src="image1.jpg" alt="Us">
+  <div class="image-container">
+    <img src="image1.jpg" alt="img1">
+    <img src="image2.jpg" alt="img2">
+    <img src="image3.jpg" alt="img3">
+    <img src="image4.jpg" alt="img4">
+    <img src="image5.jpg" alt="img5">
+    <img src="image6.jpg" alt="img6">
+    <img src="image7.jpg" alt="img7">
+    <img src="image8.jpg" alt="img8">
+    <img src="image9.jpg" alt="img9">
+    <img src="image10.jpg" alt="img10">
+  </div>
 
   <audio controls autoplay loop>
     <source src="HOW_TO_LOVE_커버.mp3" type="audio/mpeg">
@@ -101,24 +95,6 @@
 
     setInterval(updateTimer, 1000);
     updateTimer();
-
-    // Slideshow images
-    const images = [
-      "image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg", "image5.jpg",
-      "image6.jpg", "image7.jpg", "image8.jpg", "image9.jpg", "image10.jpg"
-    ];
-
-    let index = 0;
-    const slideshow = document.getElementById("slideshow");
-
-    setInterval(() => {
-      slideshow.classList.remove("show");
-      setTimeout(() => {
-        index = (index + 1) % images.length;
-        slideshow.src = images[index];
-        slideshow.classList.add("show");
-      }, 500);
-    }, 4000);
   </script>
 </body>
 </html>

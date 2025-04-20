@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>100 Days With You 💖</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #1e1e2f;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 50px;
+    }
+
+    .timer {
+      font-size: 1.5em;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 10px 20px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .title {
+      font-size: 2.5em;
+      font-weight: 600;
+      color: #ffb6c1;
+      text-shadow: 2px 2px 12px rgba(255, 255, 255, 0.2);
+      margin-bottom: 20px;
+    }
+
+    .image-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      max-width: 90vw;
+      margin-bottom: 30px;
+    }
+
+    .image-container img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    audio {
+      margin-bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="timer" id="timer"></div>
+  <div class="title">100 Days With You 💖</div>
+
+  <div class="image-container">
+    <img src="image1.jpg" alt="img1">
+    <img src="image2.jpg" alt="img2">
+    <img src="image3.jpg" alt="img3">
+    <img src="image4.jpg" alt="img4">
+    <img src="image5.jpg" alt="img5">
+    <img src="image6.jpg" alt="img6">
+    <img src="image7.jpg" alt="img7">
+    <img src="image8.jpg" alt="img8">
+    <img src="image9.jpg" alt="img9">
+    <img src="image10.jpg" alt="img10">
+  </div>
+
+  <audio controls autoplay loop>
+    <source src="HOW_TO_LOVE_커버.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    // Timer from Jan 12, 2025, 12:53 PM
+    const startDate = new Date("2025-01-12T12:53:00");
+    const timerEl = document.getElementById("timer");
+
+    function updateTimer() {
+      const now = new Date();
+      const diff = now - startDate;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      timerEl.textContent = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  </script>
+</body>
+</html>

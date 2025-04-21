@@ -12,7 +12,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+      padding-top: 40px;
       height: 100vh;
       overflow: hidden;
     }
@@ -79,7 +80,7 @@
     }
 
     audio {
-      margin-bottom: 40px;
+      margin-top: 10px;
       z-index: 1;
     }
 
@@ -127,9 +128,9 @@
   <img id="rightGif" src="https://media0.giphy.com/media/T86i6yDyOYz7J6dPhf/giphy.gif" style="width: 80px; display: none;">
 </div>
 
-  <button onclick="toggleGallery()" style="z-index:1; margin-bottom: 20px; padding: 12px 20px; border-radius: 30px; border: none; background: #ff69b4; color: white; font-size: 1.1em; cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.2);">💗 Click Me 💗</button>
+  <button onclick="toggleGallery()" id="galleryBtn" style="z-index:1; margin-bottom: 20px; padding: 12px 20px; border-radius: 30px; border: none; background: #ff69b4; color: white; font-size: 1.1em; cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.2);">💗 Click Me 💗</button>
 
-  <div id="gallery" style="display: none; flex-wrap: wrap; gap: 10px; justify-content: center; z-index:1;">
+  <div id="gallery" style="display: none; flex-wrap: wrap; gap: 10px; justify-content: center; z-index:1; margin: 20px 0;">
     <img src="image1.jpg" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
     <img src="image2.jpg" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
     <img src="image3.jpg" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
@@ -205,9 +206,16 @@
     setInterval(createHeart, 500);
 
     function toggleGallery() {
-      const gallery = document.getElementById("gallery");
-      gallery.style.display = gallery.style.display === "none" ? "flex" : "none";
-    }
+  const gallery = document.getElementById("gallery");
+  const audio = document.querySelector("audio");
+  if (gallery.style.display === "none") {
+    gallery.style.display = "flex";
+    audio.style.marginBottom = "10px";
+  } else {
+    gallery.style.display = "none";
+    audio.style.marginBottom = "40px";
+  }
+}
     function celebrate() {
     const canvas = document.getElementById("confetti");
     const ctx = canvas.getContext("2d");

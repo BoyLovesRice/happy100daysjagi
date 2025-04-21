@@ -108,6 +108,19 @@
     0% { transform: translateY(0) scale(1) rotate(45deg); opacity: 0.6; }
     100% { transform: translateY(-100vh) scale(1.2) rotate(45deg); opacity: 0; }
   }
+  .gallery-hidden {
+    display: none;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 1s ease;
+    z-index: 1;
+  }
+  .gallery-visible {
+    display: flex;
+    opacity: 1;
+  }
 </style>
 </head>
 <body>
@@ -123,7 +136,7 @@
 
   <button onclick="toggleGallery()" style="z-index:1; margin-bottom: 20px; padding: 12px 20px; border-radius: 30px; border: none; background: #ff69b4; color: white; font-size: 1.1em; cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.2);">💗 Click Me 💗</button>
 
-  <div id="gallery" style="display: none; flex-wrap: wrap; gap: 10px; justify-content: center; z-index:1;">
+  <div id="gallery" class="gallery-hidden">
     <img src="image1.jpg" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
     <img src="image2.jpg" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
     <img src="image3.jpg" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
@@ -135,6 +148,8 @@
     <img src="image9.jpg" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
     <img src="image10.jpg" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;">
   </div>
+
+  <img id="secret" src="special.jpg" alt="서프라이즈 이미지" style="display:none; width: 300px; margin-top: 20px; border-radius: 12px; box-shadow: 0 0 10px rgba(255,255,255,0.5);">
 
   <audio controls autoplay loop>
     <source src="HOW_TO_LOVE.mp3" type="audio/mpeg">
@@ -191,9 +206,16 @@
   }
   setInterval(createHeart, 500);
   function toggleGallery() {
-    const gallery = document.getElementById("gallery");
-    gallery.style.display = gallery.style.display === "none" ? "flex" : "none";
+  const gallery = document.getElementById("gallery");
+  if (gallery.classList.contains("gallery-visible")) {
+    gallery.classList.remove("gallery-visible");
+    gallery.classList.add("gallery-hidden");
+  } else {
+    gallery.classList.remove("gallery-hidden");
+    gallery.classList.add("gallery-visible");
   }
+}
+}
 </script>
 </body>
 </html>

@@ -114,6 +114,7 @@
 <body>
   <div class="stars"></div>
   <div id="hearts"></div>
+<canvas id="confetti"></canvas>
 
   <div class="timer" id="timer"></div>
   <div class="title" id="title">우리 만난 지 100일 💖 카운트다운</div>
@@ -158,7 +159,11 @@
       timerEl.textContent = `${days}일 ${hours}시간 ${minutes}분 ${seconds}초`;
 
       if (days >= 100) {
-        titleEl.textContent = "🎉 벌써 100일이야~ 사랑해 💖";
+      titleEl.textContent = "🎉 벌써 100일이야~ 사랑해 💖";
+      if (!window.hasCelebrated) {
+        celebrate();
+        window.hasCelebrated = true;
+      }
       } else {
         titleEl.textContent = "우리 만난 지 100일 💖 카운트다운";
       }
@@ -193,6 +198,33 @@
       const gallery = document.getElementById("gallery");
       gallery.style.display = gallery.style.display === "none" ? "flex" : "none";
     }
-  </script>
+    function celebrate() {
+    const canvas = document.getElementById("confetti");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const colors = ['#ffb6c1', '#ffe4e1', '#ffc0cb', '#ffffff'];
+    const particles = Array.from({ length: 100 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 6 + 4,
+      speedY: Math.random() * 3 + 1,
+      color: colors[Math.floor(Math.random() * colors.length)],
+    }));
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let p of particles) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, 2 * Math.PI);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+        p.y += p.speedY;
+        if (p.y > canvas.height) p.y = -10;
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  }
+</script>
 </body>
 </html>

@@ -119,9 +119,13 @@
   <div class="timer" id="timer"></div>
   <div class="title" id="title">우리 만난 지 100일 💖 카운트다운</div>
 
+  <div style="display: flex; align-items: center; gap: 20px;">
+  <img id="leftGif" src="https://media0.giphy.com/media/T86i6yDyOYz7J6dPhf/giphy.gif" style="width: 80px; display: none;">
   <div class="image-box">
     <img id="slideshow" src="image1.jpg" alt="우리 사진">
   </div>
+  <img id="rightGif" src="https://media0.giphy.com/media/T86i6yDyOYz7J6dPhf/giphy.gif" style="width: 80px; display: none;">
+</div>
 
   <button onclick="toggleGallery()" style="z-index:1; margin-bottom: 20px; padding: 12px 20px; border-radius: 30px; border: none; background: #ff69b4; color: white; font-size: 1.1em; cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.2);">💗 Click Me 💗</button>
 
@@ -160,6 +164,12 @@
 
       if (days >= 100) {
       titleEl.textContent = "🎉 벌써 100일이야~ 사랑해 💖";
+      document.getElementById("leftGif").style.display = "block";
+      document.getElementById("rightGif").style.display = "block";
+      if (!window.hasCelebrated) {
+        celebrate();
+        window.hasCelebrated = true;
+      }
       if (!window.hasCelebrated) {
         celebrate();
         window.hasCelebrated = true;
